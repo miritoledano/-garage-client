@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrls: ['./garage-table-component.scss']
 })
 export class GarageTableComponent {
+  // קבלת הנתונים מה API
   @Input() set garages(value: Garage[]) {
     if (value) {
       this.dataSource.data = value;
@@ -20,14 +21,14 @@ export class GarageTableComponent {
   }
 
   @Output() selectionChange = new EventEmitter<Garage[]>();
-
+// מערך סדר העמודות 
   displayedColumns: string[] = [
     'select', 'misparMosah', 'shemMosah', 'sugMosah', 'ktovet', 'yishuv', 'telephone'
   ];
-
+// אם אני יעשה פילטר יעזור לי 
   dataSource = new MatTableDataSource<Garage>();
   selection: Garage[] = [];
-
+// אם השורה לא נבחרה מוסיף למערך ומעדכן 
   toggleRow(row: Garage) {
     const index = this.selection.indexOf(row);
     if (index === -1) this.selection.push(row);
@@ -35,18 +36,18 @@ export class GarageTableComponent {
 
     this.selectionChange.emit(this.selection);
   }
-
+// אם בחר הכול הכול נוסף
   toggleAll(event: any) {
     if (event.checked) this.selection = [...this.dataSource.data];
     else this.selection = [];
 
     this.selectionChange.emit(this.selection);
   }
-
+// בדיקה האם כל השורות נבחרו
   isAllSelected() {
     return this.selection.length === this.dataSource.data.length && this.selection.length > 0;
   }
-
+// או חלק
   isPartialSelected() {
     return this.selection.length > 0 && this.selection.length < this.dataSource.data.length;
   }
