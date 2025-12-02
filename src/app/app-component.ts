@@ -29,8 +29,11 @@ export class AppComponent {
   garagesFromApi: Garage[] = [];
   garagesFromDb: Garage[] = [];
   selectedGarages: Garage[] = [];
-  loading = false;       // Loader בעת הוספה למסד
-  loadingApi = false;    // Loader בעת שליפת מוסכים מה-API
+
+  loading = false; // Loader בעת הוספה למסד
+  loadingApi = false; // Loader בעת שליפת מוסכים מה-API
+  loadingDb = false;  // Loader בעת שליפת מוסכים מה-DB
+
   notification: { message: string; type: 'success' | 'error' } | null = null;
 
   constructor(
@@ -40,16 +43,30 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+    // Loader DB אוטומטי
+    this.loadingDb = true;
+    this.cdr.detectChanges();
+
     this.garageService.getAllGarages().subscribe({
-      next: dbData => this.ngZone.run(() => this.garagesFromDb = dbData),
-      error: err => this.showNotification('שגיאה בטעינת מוסכים מהמסד', 'error')
+      next: dbData => this.ngZone.run(() => {
+        this.garagesFromDb = dbData;
+        this.loadingDb = false;
+        this.cdr.detectChanges();
+      }),
+      error: err => this.ngZone.run(() => {
+        this.showNotification('שגיאה בטעינת מוסכים מהמסד', 'error');
+        this.loadingDb = false;
+        this.cdr.detectChanges();
+      })
     });
+
+    // Loader API אוטומטי
+    this.loadGaragesFromApi();
   }
 
   loadGaragesFromApi() {
     this.loadingApi = true;
     this.cdr.detectChanges();
-
     this.garageService.fetchAndSaveFromApi().subscribe({
       next: apiData => this.ngZone.run(() => {
         this.garagesFromApi = apiData;

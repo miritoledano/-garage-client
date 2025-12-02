@@ -1,21 +1,9 @@
 <div class="container">
   <div class="tables-container">
-    <app-garage-multiselect
-      [garages]="garagesFromApi"
-      (loadApiRequested)="loadGaragesFromApi()"
-      (selectionChange)="onSelectionChange($event)">
-    </app-garage-multiselect>
-
-    <app-garage-add-button
-      [selectedGarages]="selectedGarages"
-      [loading]="loading"
-      (addClicked)="onAddSelected()">
-    </app-garage-add-button>
-
     <div class="tables-wrapper">
       <div class="table-box">
         <h3>מוסכים מה-API</h3>
-        <app-loader [visible]="loadingApi" message="טוען מוסכים..."></app-loader>
+        <app-loader [visible]="loadingApi" message="טוען מוסכים מה-API..."></app-loader>
         <app-garage-table
           *ngIf="!loadingApi"
           [garages]="garagesFromApi"
@@ -25,9 +13,19 @@
 
       <div class="table-box">
         <h3>מוסכים מהמסד הנתונים</h3>
-        <app-garage-table [garages]="garagesFromDb"></app-garage-table>
+        <app-loader [visible]="loadingDb" message="טוען מוסכים מה-DB..."></app-loader>
+        <app-garage-table
+          *ngIf="!loadingDb"
+          [garages]="garagesFromDb">
+        </app-garage-table>
       </div>
     </div>
+
+    <app-garage-add-button
+      [selectedGarages]="selectedGarages"
+      [loading]="loading"
+      (addClicked)="onAddSelected()">
+    </app-garage-add-button>
 
     <app-loader [visible]="loading" message="מוסיף מוסכים למסד..."></app-loader>
   </div>

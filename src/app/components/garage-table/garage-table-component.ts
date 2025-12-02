@@ -13,16 +13,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrls: ['./garage-table-component.scss']
 })
 export class GarageTableComponent {
-  allGarages: Garage[] = []; // שומר את כל הנתונים
-
   @Input() set garages(value: Garage[]) {
     if (value) {
-      this.allGarages = value;
-      this.dataSource.data = value; // מתחיל מלא
+      this.dataSource.data = value;
     }
   }
 
-  @Output() selectionChange = new EventEmitter<Garage[]>(); // שולח בחירה ל-AppComponent
+  @Output() selectionChange = new EventEmitter<Garage[]>();
 
   displayedColumns: string[] = [
     'select', 'misparMosah', 'shemMosah', 'sugMosah', 'ktovet', 'yishuv', 'telephone'
