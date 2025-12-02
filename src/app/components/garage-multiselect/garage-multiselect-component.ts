@@ -13,17 +13,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class GarageMultiselectComponent {
 
-  @Input() garages: Garage[] = [];
-  selectedGarages: Garage[] = [];
+  @Input() garages: Garage[] = []; 
+  // משתנה שמכיל את כל המוסכים המוצגים בסלקט
 
-  @Output() selectionChange = new EventEmitter<Garage[]>();
-  @Output() loadApiRequested = new EventEmitter<void>();
+  selectedGarages: Garage[] = []; 
+  // כאן נשמרים המוסכים שהמשתמש בחר
 
+  @Output() selectionChange = new EventEmitter<Garage[]>(); 
+  // מודיע להורה אילו מוסכים נבחרו
+
+  // הפונקציה שנקראת כשמשתמש משנה את הבחירה
   updateSelection() {
     this.selectionChange.emit(this.selectedGarages);
-  }
-
-  requestApiLoad() {
-    this.loadApiRequested.emit();
   }
 }
