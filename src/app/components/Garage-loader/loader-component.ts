@@ -10,6 +10,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrls: ['./loader-component.scss']
 })
 export class LoaderComponent {
+    // ובתור התחלה זה מוגדר כשקר
   @Input() visible = false;
+//   הודעת הבריררית מחדל תיהיה טוען
   @Input() message: string = 'טוען...';
 }
