@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div class="tables-container">
+
+    <!-- Multi-select של מוסכים -->
+    <app-garage-multiselect
+      [garages]="garagesFromApi"
+      (loadApiRequested)="loadGaragesFromApi()"
+      (selectionChange)="onSelectionChange($event)">
+    </app-garage-multiselect>
+
+    <!-- כפתור הוספת מוסכים נבחרים -->
+    <app-garage-add-button
+      [selectedGarages]="selectedGarages"
+      (addClicked)="onAddSelected()">
+    </app-garage-add-button>
+
+    <div class="tables-wrapper">
+
+      <!-- טבלת מוסכים מה-API -->
+      <div class="table-box">
+        <h3>מוסכים מה-API</h3>
+
+        <!-- ספינר רק בזמן טעינת המוסכים מה-API -->
+        <div class="loader-overlay" *ngIf="loadingApi">
+          <div class="loader-box">
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+            <p>טוען מוסכים...</p>
+          </div>
+        </div>
+
+        <app-garage-table
+          *ngIf="!loadingApi"
+          [garages]="garagesFromApi"
+          (selectionChange)="onSelectionChange($event)">
+        </app-garage-table>
+      </div>
+
+      <!-- טבלת מוסכים מהמסד -->
+      <div class="table-box">
+        <h3>מוסכים מהמסד הנתונים</h3>
+        <app-garage-table [garages]="garagesFromDb"></app-garage-table>
+      </div>
+
+    </div>
+
+    <!-- ספינר בזמן הוספה למסד -->
+    <div class="loader-overlay" *ngIf="loading">
+      <div class="loader-box">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <p>מוסיף מוסכים למסד...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- הודעות עליונות -->
+  <div class="notification-container" *ngIf="notification">
+    <div class="notification-box" [ngClass]="notification.type">
+      <span class="icon">⚡</span>
+      <span>{{notification.message}}</span>
+    </div>
+  </div>
+
+</div>

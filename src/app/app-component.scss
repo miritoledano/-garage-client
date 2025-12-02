@@ -1,0 +1,202 @@
+/* Container כללי */
+.container {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* כותרות */
+h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #3f51b5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Wrapper לטבלאות */
+.tables-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* כל טבלה */
+.table-box {
+  flex: 1;
+  min-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow-x: auto;
+}
+
+/* טבלאות Mat */
+table.mat-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+
+/* כותרות */
+th.mat-header-cell {
+  background: linear-gradient(to right, #3f51b5, #5c6bc0);
+  color: white;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* תאים */
+td.mat-cell {
+  text-align: right;
+  padding: 10px 5px;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+/* Hover על שורה */
+tr.mat-row:hover td {
+  background: #f1f1f1;
+  transition: background 0.3s ease;
+}
+
+/* צ'קבוקס גדולים יותר */
+mat-checkbox {
+  transform: scale(1.3);
+  margin: auto;
+  display: block;
+}
+
+/* כפתור הוספה */
+button.mat-raised-button {
+  display: block;
+  margin: 20px auto;
+  background: linear-gradient(135deg, #ff4081, #f50057);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  min-width: 220px;
+}
+
+button.mat-raised-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(245,0,87,0.4);
+}
+
+/* מצב ריק לטבלה */
+.empty {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: gray;
+  font-style: italic;
+}
+
+/* Multi-select וכפתור בצמוד */
+.tables-container > app-garage-multiselect,
+.tables-container > app-garage-add-button {
+  margin-bottom: 20px;
+  display: block;
+  text-align: center;
+}
+
+/* ספינר טעינה */
+mat-progress-spinner {
+  display: block;
+  margin: 30px auto;
+}
+
+/* הודעות עליונות */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: auto;
+  max-width: 600px;
+}
+
+.notification-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: slideDown 0.3s ease;
+}
+
+.notification-box.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.notification-box.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.notification-box .icon {
+  font-size: 20px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translate(-50%, -20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+/* מסכת טעינה מכסה את כל המסך */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+/* קופסת הספינר */
+.loader-box {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  animation: scaleIn 0.2s ease;
+}
+
+.loader-box p {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #3f51b5;
+  font-weight: 600;
+}
+
+/* אנימציות */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

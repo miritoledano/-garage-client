@@ -1,0 +1,32 @@
+.full-width {
+  width: 100%;
+}
+
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+td, th {
+  text-align: right !important;
+}
+
+mat-checkbox {
+  transform: scale(1.2);
+}
+
+tr:hover td {
+  background: #fafafa;
+}
+
+.empty {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: gray;
+}

@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>בחר מוסכים</mat-label>
+  <mat-select multiple
+              [(ngModel)]="selectedGarages"
+              (click)="requestApiLoad()"
+              (selectionChange)="updateSelection()">
+    <mat-option *ngFor="let garage of garages" [value]="garage">
+      {{ garage.shemMosah }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
