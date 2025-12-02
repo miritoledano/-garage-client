@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class GarageAddButtonComponent {
   @Input() selectedGarages: Garage[] = [];
   @Output() addClicked = new EventEmitter<void>();
+  @Input() loading: boolean = false;
+
 
   onClick() {
     this.addClicked.emit();

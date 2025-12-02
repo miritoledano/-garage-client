@@ -53,18 +53,4 @@ export class GarageTableComponent {
   isPartialSelected() {
     return this.selection.length > 0 && this.selection.length < this.dataSource.data.length;
   }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.trim();
-
-    if (filterValue) {
-      // סינון לפי מספר מוסך
-      this.dataSource.data = this.allGarages.filter(g =>
-        g.misparMosah.toString().includes(filterValue)
-      );
-    } else {
-      // אם הקלט ריק – מחזיר את כל הנתונים
-      this.dataSource.data = this.allGarages;
-    }
-  }
 }
