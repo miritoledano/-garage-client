@@ -31,6 +31,7 @@ export class GarageService {
   }
 
   // 3. הוספה בודדת של מוסך
+  // הדרך לעבוד עם םעולות אסינכורניות
   addGarage(garage: Garage): Observable<any> {
     return this.http.post(`${this.apiUrl}/AddGarage`, garage);
   }

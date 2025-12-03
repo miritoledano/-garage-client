@@ -15,7 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class GarageTableComponent {
   // קבלת הנתונים מה API
   @Input() set garages(value: Garage[]) {
-    if (value) {
+    if (value) {  
       this.dataSource.data = value;
     }
   }
@@ -37,6 +37,7 @@ export class GarageTableComponent {
     this.selectionChange.emit(this.selection);
   }
 // אם בחר הכול הכול נוסף
+// כלומר הוא לא עובר אחד אחד בובודק פשוט מחליף את הכול ומוסיף את כל הטבלה
   toggleAll(event: any) {
     if (event.checked) this.selection = [...this.dataSource.data];
     else this.selection = [];
